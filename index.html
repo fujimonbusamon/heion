@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>バレーボールチーム 平穏 公式サイト</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans JP', 'Inter', sans-serif;
@@ -27,18 +27,22 @@
 
         /* ヘッダー固定時のコンテンツオフセット */
         body {
-            padding-top: 64px; 
+            padding-top: 72px; /* Adjusted for new header height */
         }
         @media (min-width: 768px) {
             body {
-                padding-top: 80px; 
+                padding-top: 88px; /* Adjusted for new header height */
             }
         }
 
         .header-logo {
-            width: 40px; 
-            height: 40px; 
+            width: 50px;  /* Increased logo size */
+            height: 50px; /* Increased logo size */
             object-fit: contain;
+            transition: transform 0.3s ease-in-out;
+        }
+        .header-logo:hover {
+            transform: scale(1.1);
         }
 
         .gallery-img {
@@ -74,39 +78,82 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
+        /* New Header Styles */
+        .main-header {
+            background: linear-gradient(to right, #1A472A, #2a623d); /* Gradient background */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Enhanced shadow */
+        }
+
+        .team-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 900; /* Extra bold for team name */
+            font-size: 1.6rem; /* Slightly larger team name */
+        }
+         @media (min-width: 768px) {
+            .team-title {
+                font-size: 1.75rem;
+            }
+        }
+
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0.75rem;
+            color: #E5E7EB; /* Lighter text color for better contrast on gradient */
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF; /* White on hover */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px; /* Position the underline slightly below the text */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #DAA520; /* Accent gold for underline */
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 70%; /* Width of the underline on hover */
+        }
+
     </style>
 </head>
 <body class="bg-gray-100">
 
-    <header class="team-bg-dark-green text-white shadow-lg fixed top-0 left-0 right-0 z-50">
+    <header class="main-header text-white fixed top-0 left-0 right-0 z-50"> {/* Updated class */}
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16 md:h-20">
-                <a href="#" class="flex items-center space-x-2">
-                    <img src="1745414700169.jpg" alt="チーム平穏 ロゴ" class="header-logo" onerror="this.onerror=null;this.src='https://placehold.co/40x40/FFFFFF/1A472A?text=ロゴ';">
-                    <h1 class="text-xl md:text-2xl font-bold">バレーボールチーム 平穏</h1>
+            <div class="flex items-center justify-between h-18 md:h-22"> {/* Increased height slightly */}
+                <a href="#" class="flex items-center space-x-3"> {/* Increased spacing */}
+                    <img src="1745414700169.jpg" alt="チーム平穏 ロゴ" class="header-logo">
+                    <h1 class="team-title">バレーボールチーム 平穏</h1> {/* Updated class */}
                 </a>
-                <nav class="hidden md:flex space-x-4">
-                    <a href="#concept" class="hover:team-text-accent-gold px-3 py-2 rounded-md text-sm font-medium">コンセプト</a>
-                    <a href="#members" class="hover:team-text-accent-gold px-3 py-2 rounded-md text-sm font-medium">メンバー紹介</a>
-                    <a href="#activities" class="hover:team-text-accent-gold px-3 py-2 rounded-md text-sm font-medium">活動実績</a>
-                    <a href="#recruit" class="hover:team-text-accent-gold px-3 py-2 rounded-md text-sm font-medium">メンバー募集</a>
-                    <a href="#contact" class="hover:team-text-accent-gold px-3 py-2 rounded-md text-sm font-medium">問い合わせ</a>
+                <nav class="hidden md:flex space-x-2 lg:space-x-4"> {/* Adjusted spacing */}
+                    <a href="#concept" class="nav-link">コンセプト</a> {/* Updated class */}
+                    <a href="#members" class="nav-link">メンバー紹介</a> {/* Updated class */}
+                    <a href="#activities" class="nav-link">活動実績</a> {/* Updated class */}
+                    <a href="#recruit" class="nav-link">メンバー募集</a> {/* Updated class */}
+                    <a href="#contact" class="nav-link">問い合わせ</a> {/* Updated class */}
                 </nav>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-white focus:outline-none">
-                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <button id="mobile-menu-button" class="text-white p-2 focus:outline-none"> {/* Added padding */}
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"> {/* Increased icon size */}
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                         </svg>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="md:hidden hidden bg-green-800">
-            <a href="#concept" class="block hover:team-text-accent-gold px-4 py-2 text-sm">コンセプト</a>
-            <a href="#members" class="block hover:team-text-accent-gold px-4 py-2 text-sm">メンバー紹介</a>
-            <a href="#activities" class="block hover:team-text-accent-gold px-4 py-2 text-sm">活動実績</a>
-            <a href="#recruit" class="block hover:team-text-accent-gold px-4 py-2 text-sm">メンバー募集</a>
-            <a href="#contact" class="block hover:team-text-accent-gold px-4 py-2 text-sm">問い合わせ</a>
+        <div id="mobile-menu" class="md:hidden hidden bg-green-800"> {/* Mobile menu background can be adjusted if needed */}
+            <a href="#concept" class="block hover:team-text-accent-gold px-4 py-3 text-sm">コンセプト</a> {/* Increased padding */}
+            <a href="#members" class="block hover:team-text-accent-gold px-4 py-3 text-sm">メンバー紹介</a>
+            <a href="#activities" class="block hover:team-text-accent-gold px-4 py-3 text-sm">活動実績</a>
+            <a href="#recruit" class="block hover:team-text-accent-gold px-4 py-3 text-sm">メンバー募集</a>
+            <a href="#contact" class="block hover:team-text-accent-gold px-4 py-3 text-sm">問い合わせ</a>
         </div>
     </header>
 
