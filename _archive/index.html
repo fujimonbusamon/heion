@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-T">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>バレーボールチーム 平穏 公式サイト</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Noto+Sans+JP:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+        }
+        .team-bg-dark-green { background-color: #1A472A; } /* 深緑 */
+        .team-text-dark-green { color: #1A472A; }
+        .team-border-dark-green { border-color: #1A472A; }
+
+        .team-bg-light-green { background-color: #3A7D44; } /* やや明るい緑 */
+        .team-text-light-green { color: #3A7D44; }
+
+        .team-bg-accent-gold { background-color: #DAA520; } /* アクセントとしての金 */
+        .team-text-accent-gold { color: #DAA520; }
+
+        /* スムーズスクロール */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ヘッダー固定時のコンテンツオフセット */
+        body {
+            padding-top: 72px; /* Adjusted for new header height */
+        }
+        @media (min-width: 768px) {
+            body {
+                padding-top: 88px; /* Adjusted for new header height */
+            }
+        }
+
+        .header-logo {
+            width: 50px;  /* Increased logo size */
+            height: 50px; /* Increased logo size */
+            object-fit: contain;
+            transition: transform 0.3s ease-in-out;
+        }
+        .header-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px; 
+            object-fit: cover;
+            border-radius: 0.5rem; /* rounded-lg */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-lg */
+        }
+
+        /* AI生成コンテンツのスタイル */
+        .ai-generated-content {
+            background-color: #f0fdf4; /* very light green */
+            border-left: 4px solid #3A7D44; /* team-light-green */
+            padding: 1rem;
+            margin-top: 1rem;
+            border-radius: 0.25rem;
+            white-space: pre-wrap; /* 改行を保持 */
+        }
+
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            border-left-color: #1A472A; /* team-dark-green */
+            animation: spin 1s ease infinite;
+            display: inline-block;
+            margin-left: 0.5rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* New Header Styles */
+        .main-header {
+            background: linear-gradient(to right, #1A472A, #2a623d); /* Gradient background */
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2); /* Enhanced shadow */
+        }
+
+        .team-title {
+            font-family: 'Noto Sans JP', sans-serif;
+            font-weight: 900; /* Extra bold for team name */
+            font-size: 1.6rem; /* Slightly larger team name */
+        }
+         @media (min-width: 768px) {
+            .team-title {
+                font-size: 1.75rem;
+            }
+        }
+
+
+        .nav-link {
+            position: relative;
+            padding: 0.5rem 0.75rem;
+            color: #E5E7EB; /* Lighter text color for better contrast on gradient */
+            transition: color 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #FFFFFF; /* White on hover */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px; /* Position the underline slightly below the text */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #DAA520; /* Accent gold for underline */
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link:hover::after {
+            width: 70%; /* Width of the underline on hover */
+        }
+
+    </style>
+</head>
+<body class="bg-gray-100">
+
+    <header class="main-header text-white fixed top-0 left-0 right-0 z-50"> {/* Updated class */}
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-18 md:h-22"> {/* Increased height slightly */}
+                <a href="#" class="flex items-center space-x-3"> {/* Increased spacing */}
+                    <img src="1745414700169.jpg" alt="チーム平穏 ロゴ" class="header-logo">
+                    <h1 class="team-title">バレーボールチーム 平穏</h1> {/* Updated class */}
+                </a>
+                <nav class="hidden md:flex space-x-2 lg:space-x-4"> {/* Adjusted spacing */}
+                    <a href="#concept" class="nav-link">コンセプト</a> {/* Updated class */}
+                    <a href="#members" class="nav-link">メンバー紹介</a> {/* Updated class */}
+                    <a href="#activities" class="nav-link">活動実績</a> {/* Updated class */}
+                    <a href="#recruit" class="nav-link">メンバー募集</a> {/* Updated class */}
+                    <a href="#contact" class="nav-link">問い合わせ</a> {/* Updated class */}
+                </nav>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white p-2 focus:outline-none"> {/* Added padding */}
+                        <svg class="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"> {/* Increased icon size */}
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu" class="md:hidden hidden bg-green-800"> {/* Mobile menu background can be adjusted if needed */}
+            <a href="#concept" class="block hover:team-text-accent-gold px-4 py-3 text-sm">コンセプト</a> {/* Increased padding */}
+            <a href="#members" class="block hover:team-text-accent-gold px-4 py-3 text-sm">メンバー紹介</a>
+            <a href="#activities" class="block hover:team-text-accent-gold px-4 py-3 text-sm">活動実績</a>
+            <a href="#recruit" class="block hover:team-text-accent-gold px-4 py-3 text-sm">メンバー募集</a>
+            <a href="#contact" class="block hover:team-text-accent-gold px-4 py-3 text-sm">問い合わせ</a>
+        </div>
+    </header>
+
+    <section class="team-bg-light-green text-white pt-16 pb-12 md:pt-20 md:pb-16 text-center">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <img src="https://placehold.co/600x350/1A472A/FFFFFF?text=チーム活動の様子1" alt="バレーボールチーム平穏 活動風景" class="w-full max-w-2xl mx-auto rounded-lg shadow-xl mb-8 h-auto object-cover" onerror="this.onerror=null;this.src='https://placehold.co/600x350/1A472A/FFFFFF?text=イメージプレースホルダー';">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">品川区西大井のバレーボールチーム『平穏』</h2>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto">
+                男子6人制、女子6人制で活動中！地域のバレー教室やコーチ派遣も行っています。
+            </p>
+        </div>
+    </section>
+
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
+
+        <section id="concept" class="mb-12 md:mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold team-text-dark-green mb-6 pb-2 border-b-2 team-border-dark-green">コンセプト</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    私たちバレーボールチーム『平穏』は、その名の通り、穏やかで和やかながらも、内に秘めた情熱を持って活動しています。
+                    品川区西大井を拠点とし、バレーボールを通じて地域社会とのつながりを深め、スポーツの楽しさを共有することを目指しています。
+                    チーム名の「平穏」には、穏やかな心でプレーに集中し、仲間との調和を大切にするという意味が込められています。
+                    イメージキャラクターの「鯉」は、力強く流れを遡る姿から、困難に立ち向かい成長し続けるチームの象徴です。
+                </p>
+                <p class="text-gray-700 leading-relaxed">
+                    我々は品川区西大井で活動してるバレーボールチームの平穏と申します。男子6人制、女子6人制の2種目で活動しております。地域の小学校でバレー教室を行っております。バレーのコーチや講師のご紹介や派遣等も行っております。気軽にご連絡ください。
+                </p>
+                <div class="mt-6">
+                    <button id="generateConceptButton" class="team-bg-accent-gold hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        ✨ AIがチーム紹介文を提案
+                        <span id="conceptLoading" class="loading-spinner hidden ml-2"></span>
+                    </button>
+                    <div id="aiConceptOutput" class="ai-generated-content mt-4 hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="members" class="mb-12 md:mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold team-text-dark-green mb-6 pb-2 border-b-2 team-border-dark-green">メンバー紹介</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-gray-700 mb-6">個性豊かなメンバーが揃っています！一緒に汗を流しましょう！</p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="border team-border-dark-green rounded-lg p-4 text-center hover:shadow-xl transition-shadow">
+                        <img src="https://placehold.co/150x150/3A7D44/FFFFFF?text=選手A" alt="メンバー写真A" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/150x150/CCCCCC/FFFFFF?text=写真なし';">
+                        <h3 class="text-xl font-semibold team-text-dark-green">選手A (キャプテン)</h3>
+                        <p class="text-gray-600">ポジション: セッター</p>
+                        <p class="text-sm text-gray-500 mt-2">チームを引っ張る頼れるリーダー！</p>
+                    </div>
+                    <div class="border team-border-dark-green rounded-lg p-4 text-center hover:shadow-xl transition-shadow">
+                        <img src="https://placehold.co/150x150/3A7D44/FFFFFF?text=選手B" alt="メンバー写真B" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/150x150/CCCCCC/FFFFFF?text=写真なし';">
+                        <h3 class="text-xl font-semibold team-text-dark-green">選手B</h3>
+                        <p class="text-gray-600">ポジション: アタッカー</p>
+                        <p class="text-sm text-gray-500 mt-2">パワフルなスパイクが持ち味！</p>
+                    </div>
+                    <div class="border team-border-dark-green rounded-lg p-4 text-center hover:shadow-xl transition-shadow">
+                        <img src="https://placehold.co/150x150/3A7D44/FFFFFF?text=選手C" alt="メンバー写真C" class="w-32 h-32 rounded-full mx-auto mb-4 object-cover" onerror="this.onerror=null;this.src='https://placehold.co/150x150/CCCCCC/FFFFFF?text=写真なし';">
+                        <h3 class="text-xl font-semibold team-text-dark-green">選手C</h3>
+                        <p class="text-gray-600">ポジション: リベロ</p>
+                        <p class="text-sm text-gray-500 mt-2">鉄壁の守備でチームを支える！</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities" class="mb-12 md:mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold team-text-dark-green mb-6 pb-2 border-b-2 team-border-dark-green">活動実績</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    日々の練習や試合、イベントの様子です。
+                </p>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
+                    <img src="https://placehold.co/300x200/3A7D44/FFFFFF?text=活動写真1" alt="活動写真1" class="gallery-img" onerror="this.onerror=null;this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=写真読込エラー';">
+                    <img src="https://placehold.co/300x200/3A7D44/FFFFFF?text=活動写真2" alt="活動写真2" class="gallery-img" onerror="this.onerror=null;this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=写真読込エラー';">
+                    <img src="https://placehold.co/300x200/3A7D44/FFFFFF?text=活動写真3" alt="活動写真3" class="gallery-img" onerror="this.onerror=null;this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=写真読込エラー';">
+                    <img src="https://placehold.co/300x200/3A7D44/FFFFFF?text=活動写真4" alt="活動写真4" class="gallery-img" onerror="this.onerror=null;this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=写真読込エラー';">
+                    <img src="https://placehold.co/300x200/3A7D44/FFFFFF?text=活動写真5" alt="活動写真5" class="gallery-img" onerror="this.onerror=null;this.src='https://placehold.co/300x200/CCCCCC/FFFFFF?text=写真読込エラー';">
+                </div>
+                <ul class="list-disc list-inside text-gray-700 space-y-2">
+                    <li>2024年 品川区民大会 男子ベスト4 / 女子出場</li>
+                    <li>定期的な地域小学校でのバレーボール教室開催 (月1回)</li>
+                    <li>合同練習試合 (近隣チームと月2回程度)</li>
+                    <li>チーム内イベント (BBQ、クリスマス会など)</li>
+                    <li><span class="team-text-accent-gold font-semibold">[今後の予定]</span> 2025年 夏季大会に向けて練習中！</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="recruit" class="mb-12 md:mb-16 scroll-mt-20">
+            <h2 class="text-3xl font-bold team-text-dark-green mb-6 pb-2 border-b-2 team-border-dark-green">メンバー募集</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-gray-700 leading-relaxed mb-4">
+                    バレーボールチーム『平穏』では、一緒に楽しくプレーできる新しい仲間を募集しています！
+                    経験者はもちろん、ブランクのある方、学生時代に少しやっていたという方も大歓迎です。
+                    男子チーム、女子チームともに募集中です。マネージャーも同時募集しています！
+                </p>
+                <div class="team-bg-light-green text-white p-4 rounded-md">
+                    <h4 class="font-semibold text-lg mb-2">募集要項:</h4>
+                    <ul class="list-disc list-inside ml-4 space-y-1">
+                        <li>年齢: 18歳以上 (高校生不可)</li>
+                        <li>性別: 男子、女子</li>
+                        <li>経験: 不問 (バレーボールを楽しみたい方！)</li>
+                        <li>活動場所: 品川区西大井近辺の体育館</li>
+                        <li>活動頻度: 週1～2回 (主に土日祝)</li>
+                    </ul>
+                    <p class="mt-3">見学や体験参加も随時受け付けています。お気軽にお問い合わせください！</p>
+                </div>
+                <div class="mt-6">
+                    <label for="scoutTarget" class="block text-gray-700 font-semibold mb-2">募集対象者を選択:</label>
+                    <select id="scoutTarget" class="w-full sm:w-auto px-3 py-2 border team-border-dark-green rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500 mb-3">
+                        <option value="経験者">経験者</option>
+                        <option value="初心者">初心者</option>
+                        <option value="ブランクのある方">ブランクのある方</option>
+                        <option value="学生時代に経験あり">学生時代に経験あり</option>
+                        <option value="マネージャー希望">マネージャー希望</option>
+                    </select>
+                    <button id="generateScoutMessageButton" class="team-bg-accent-gold hover:bg-yellow-600 text-black font-semibold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        ✨ AIがスカウトメッセージを作成
+                        <span id="scoutLoading" class="loading-spinner hidden ml-2"></span>
+                    </button>
+                    <div id="aiScoutMessageOutput" class="ai-generated-content mt-4 hidden"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="scroll-mt-20">
+            <h2 class="text-3xl font-bold team-text-dark-green mb-6 pb-2 border-b-2 team-border-dark-green">問い合わせ</h2>
+            <div class="bg-white p-6 rounded-lg shadow-lg">
+                <p class="text-gray-700 mb-6">
+                    チームへの参加希望、練習試合の申し込み、バレー教室やコーチ派遣に関するご相談など、お気軽にご連絡ください。
+                </p>
+                <form id="contactForm">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-700 font-semibold mb-2">お名前</label>
+                        <input type="text" id="name" name="name" class="w-full px-3 py-2 border team-border-dark-green rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-700 font-semibold mb-2">メールアドレス</label>
+                        <input type="email" id="email" name="email" class="w-full px-3 py-2 border team-border-dark-green rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required>
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-700 font-semibold mb-2">メッセージ</label>
+                        <textarea id="message" name="message" rows="5" class="w-full px-3 py-2 border team-border-dark-green rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full team-bg-dark-green hover:team-bg-light-green text-white font-bold py-3 px-4 rounded-lg transition duration-300">
+                        送信する
+                    </button>
+                </form>
+                <div id="form-message" class="mt-4 text-center"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="team-bg-dark-green text-white py-8 mt-12 md:mt-16">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="mb-4">フォローして最新情報をチェック！</p>
+            <a href="https://www.instagram.com/YOUR_INSTAGRAM_USERNAME_HERE" target="_blank" rel="noopener noreferrer" class="inline-block team-bg-accent-gold hover:bg-yellow-600 text-black font-semibold py-2 px-6 rounded-lg transition duration-300 text-lg">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline-block mr-2" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919A48.978 48.978 0 0112 2.163zm0 3.631c-3.182 0-3.522.011-4.757.068-2.786.127-3.931 1.271-4.059 4.058-.057 1.235-.068 1.574-.068 4.757s.011 3.522.068 4.757c.128 2.786 1.272 3.931 4.059 4.058 1.235.057 1.574.068 4.757.068s3.522-.011 4.757-.068c2.786-.127 3.931-1.271 4.058-4.058.057-1.235.068-1.574.068-4.757s-.011-3.522-.068-4.757c-.127-2.786-1.272-3.931-4.058-4.058C15.522 5.805 15.182 5.794 12 5.794zm0 2.163a4.042 4.042 0 100 8.084 4.042 4.042 0 000-8.084zm0 6.866a2.824 2.824 0 110-5.648 2.824 2.824 0 010 5.648zm6.406-6.866a.96.96 0 100-1.92.96.96 0 000 1.92z"/>
+                </svg>
+                Instagramでフォロー
+            </a>
+            <p class="mt-6 text-sm text-gray-300">&copy; 2024 バレーボールチーム 平穏. All Rights Reserved.</p>
+            <p class="text-xs text-gray-400 mt-1">※このウェブサイトはサンプルです。実際のチームとは異なる場合があります。</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault(); 
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+
+            if (!name || !email || !message) {
+                formMessage.textContent = 'すべての項目を入力してください。';
+                formMessage.className = 'mt-4 text-center text-red-500';
+                return;
+            }
+            
+            formMessage.textContent = 'メッセージありがとうございます！内容を確認し、追ってご連絡いたします。';
+            formMessage.className = 'mt-4 text-center text-green-600';
+            contactForm.reset();
+        });
+
+        // Gemini API Integration
+        const apiKey = ""; // APIキーは空のままにします。Canvas環境で自動的に提供されます。
+
+        const generateConceptButton = document.getElementById('generateConceptButton');
+        const aiConceptOutput = document.getElementById('aiConceptOutput');
+        const conceptLoading = document.getElementById('conceptLoading');
+
+        if (generateConceptButton) {
+            generateConceptButton.addEventListener('click', async () => {
+                conceptLoading.classList.remove('hidden');
+                aiConceptOutput.classList.add('hidden');
+                aiConceptOutput.textContent = '';
+
+                const teamName = "平穏";
+                const location = "品川区西大井";
+                const character = "鯉";
+                const activities = "男子6人制バレーボール、女子6人制バレーボール、地域の小学校でのバレー教室、バレーのコーチや講師の紹介・派遣";
+                
+                const prompt = `以下の情報に基づいて、バレーボールチーム「${teamName}」の魅力的でキャッチーな紹介文を3つの異なるスタイルで提案してください。各提案は150字程度で、絵文字を適度に使い、親しみやすい言葉遣いを心がけてください。\n\n情報：\n- チーム名： ${teamName}\n- 活動拠点： ${location}\n- イメージキャラクター： ${character} (力強く流れを遡る姿、困難に立ち向かい成長し続けるチームの象徴)\n- 主な活動： ${activities}\n- チームの雰囲気： 穏やか、和やか、内に秘めた情熱、仲間との調和を大切にする\n\nスタイル：\n1. 若者向け、エネルギッシュなスタイル\n2. 地域住民向け、親しみやすいスタイル\n3. 経験者向け、競技志向も感じさせるスタイル\n`;
+
+                try {
+                    let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        aiConceptOutput.textContent = text;
+                        aiConceptOutput.classList.remove('hidden');
+                    } else {
+                        aiConceptOutput.textContent = 'AIからの提案を取得できませんでした。しばらくしてから再度お試しください。';
+                        aiConceptOutput.classList.remove('hidden');
+                        console.error('Unexpected API response structure:', result);
+                    }
+                } catch (error) {
+                    console.error('Error generating concept:', error);
+                    aiConceptOutput.textContent = `エラーが発生しました：${error.message}\n紹介文を生成できませんでした。ネットワーク接続を確認するか、時間をおいて再度お試しください。`;
+                    aiConceptOutput.classList.remove('hidden');
+                } finally {
+                    conceptLoading.classList.add('hidden');
+                }
+            });
+        }
+
+
+        const generateScoutMessageButton = document.getElementById('generateScoutMessageButton');
+        const aiScoutMessageOutput = document.getElementById('aiScoutMessageOutput');
+        const scoutTargetSelect = document.getElementById('scoutTarget');
+        const scoutLoading = document.getElementById('scoutLoading');
+
+        if (generateScoutMessageButton) {
+            generateScoutMessageButton.addEventListener('click', async () => {
+                scoutLoading.classList.remove('hidden');
+                aiScoutMessageOutput.classList.add('hidden');
+                aiScoutMessageOutput.textContent = '';
+
+                const targetAudience = scoutTargetSelect.value;
+                const teamName = "平穏";
+                const teamFeatures = "品川区西大井で活動。穏やかで和やかな雰囲気ながら、鯉のように情熱を持って成長を目指すチーム。男子・女子6人制。バレー教室やコーチ派遣も実施。";
+
+                const prompt = `バレーボールチーム「${teamName}」が新しいメンバーを募集しています。以下の情報とターゲット層に向けて、心に響くスカウトメッセージを作成してください。メッセージは150字程度で、絵文字を使って親しみやすく、かつチームの魅力が伝わるようにしてください。\n\nチーム情報： ${teamFeatures}\nターゲット層： ${targetAudience}\n\nメッセージのトーン：\n- ${targetAudience}が「このチームでバレーをしたい！」と思えるような、温かく歓迎する雰囲気で。\n- チームの楽しさ、成長できる環境をアピールしてください。\n`;
+                try {
+                    let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
+                    const payload = { contents: chatHistory };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    
+                    if (!response.ok) {
+                        throw new Error(`API Error: ${response.status} ${response.statusText}`);
+                    }
+
+                    const result = await response.json();
+
+                    if (result.candidates && result.candidates.length > 0 &&
+                        result.candidates[0].content && result.candidates[0].content.parts &&
+                        result.candidates[0].content.parts.length > 0) {
+                        const text = result.candidates[0].content.parts[0].text;
+                        aiScoutMessageOutput.textContent = text;
+                        aiScoutMessageOutput.classList.remove('hidden');
+                    } else {
+                        aiScoutMessageOutput.textContent = 'AIからのメッセージを取得できませんでした。しばらくしてから再度お試しください。';
+                        aiScoutMessageOutput.classList.remove('hidden');
+                        console.error('Unexpected API response structure:', result);
+                    }
+                } catch (error) {
+                    console.error('Error generating scout message:', error);
+                    aiScoutMessageOutput.textContent = `エラーが発生しました：${error.message}\nメッセージを生成できませんでした。ネットワーク接続を確認するか、時間をおいて再度お試しください。`;
+                    aiScoutMessageOutput.classList.remove('hidden');
+                } finally {
+                    scoutLoading.classList.add('hidden');
+                }
+            });
+        }
+
+    </script>
+</body>
+</html>
