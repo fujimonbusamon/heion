@@ -39,3 +39,18 @@ window.addEventListener('scroll', () => {
     }
 });
 
+// アコーディオンメニュー
+document.querySelectorAll('.accordion-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+        const content = document.getElementById(targetId);
+        if (content) {
+            if (content.style.display === 'none' || content.style.display === '') {
+                content.style.display = 'block';
+            } else {
+                content.style.display = 'none';
+            }
+        }
+    });
+});
+
