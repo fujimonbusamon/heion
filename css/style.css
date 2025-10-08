@@ -341,10 +341,12 @@
    メンバー画像（カスタムホバーエフェクト）
    ======================================== */
 .member-image {
+    /* 固定の正方形コンテナにして常に完全な丸にする */
     width: 180px;
     height: 180px;
-    border-radius: 50%;
+    border-radius: 50% !important;
     object-fit: cover;
+    overflow: hidden;
     border: 5px solid #1a1a1a;
     margin: 0 auto 1.5rem !important;
     transition: all 0.3s ease;
@@ -441,6 +443,17 @@
         display: block;
         margin: 0 auto 0.75rem;
     }
+
+/* 強制的に正方形にして丸く切るユーティリティ */
+.circle-img {
+    display: block;
+    width: 140px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 0.75rem;
+}
 
     .accordion-content .member-name,
     .members-grid .member-name {
@@ -693,6 +706,7 @@
     .member-image {
         width: 150px;
         height: 150px;
+        border-radius: 50% !important;
     }
 
     .photo-grid {
