@@ -403,6 +403,50 @@
     opacity: 1;
 }
 
+.sponsor-item-ai img {
+    min-width: 0;
+    height: auto;
+    max-height: none;
+}
+
+.sponsor-item-ai .sponsor-item-ai__link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.sponsor-item-ai .sponsor-item-ai__icon {
+    width: 90px;
+    height: 90px;
+    object-fit: contain;
+}
+
+.sponsor-item-ai .sponsor-item-ai__title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+}
+
+.sponsor-item-ai .sponsor-item-ai__by {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: #4b5563;
+    text-transform: lowercase;
+}
+
+.sponsor-item-ai .sponsor-item-ai__brand {
+    width: 120px;
+    height: auto;
+    max-height: 48px;
+    object-fit: contain;
+}
+
 /* ========================================
    お問い合わせボタン
    ======================================== */
