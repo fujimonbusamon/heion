@@ -358,6 +358,131 @@
     border-color: #666;
 }
 
+/* アコーディオン内のメンバー一覧を縦並びにする */
+/* アコーディオン内のメンバー一覧（デフォルトはモバイル向け：縦並び） */
+@media (max-width: 991px) {
+    .accordion-content {
+        width: 100%;
+    }
+
+    /* グリッド／フレックスで横並びになっている内包要素を強制的に縦並びに */
+    .accordion-content .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .accordion-content .flex {
+        display: block !important;
+    }
+
+    /* 右罫線がついている場合、縦並びでは不要なので解除 */
+    .accordion-content .border-r,
+    .accordion-content [class*="border-r"] {
+        border-right: none !important;
+    }
+
+    /* メンバー要素の余白と画像サイズを調整して縦並びで見やすくする */
+    .accordion-content .text-center {
+        padding: 0.75rem 0 !important;
+    }
+
+    .accordion-content .member-image {
+        width: 120px !important;
+        height: 120px !important;
+        margin: 0 auto 0.75rem !important;
+    }
+}
+
+/* デスクトップ以上では、リーダー（代表・キャプテン）は2列表示、
+   メンバー一覧も2列の丸いアイテムで表示 */
+@media (min-width: 992px) {
+    /* メンバー一覧（leaders）を2列に調整：親の grid は既に md:grid-cols-2 を持つ */
+    .members-grid {
+        /* leaders は常に2列（追加メンバーが増えても2列のグリッドで折り返す） */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        align-items: start;
+    }
+
+    /* アコーディオン内のメンバーリストを2列に */
+    .accordion-content .grid {
+        display: grid !important;
+        /* メンバー一覧は2列で、要素数が増えても自動で折り返す */
+        grid-template-columns: repeat(2, minmax(160px, 1fr)) !important;
+        gap: 1.25rem !important;
+    }
+
+    /* 各メンバーカードを丸くし、中央揃え */
+    .accordion-content .text-center {
+        padding: 0.75rem !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accordion-content .member-image {
+        width: 140px !important;
+        height: 140px !important;
+        border-radius: 50% !important;
+        margin: 0 0 0.75rem !important;
+    }
+
+    /* 保険：新しく追加されるメンバー要素が異なる構造でも適用されるように汎用ルール */
+    .accordion-content img,
+    .members-grid img {
+        width: 100%;
+        height: auto;
+        max-width: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 0.75rem;
+    }
+
+    .accordion-content .member-name,
+    .members-grid .member-name {
+        text-align: center;
+        font-weight: 600;
+        margin-top: 0.25rem;
+    }
+
+    /* ヘッダー背景ロゴ（PC）：モバイルは現状維持、PCでは右寄せで一つだけ表示 */
+    /* TL と BR デコレーションを非表示にして、main の .hero-logo を右側に配置 */
+    .hero-logo-tl,
+    .hero-logo-br {
+        display: none !important;
+    }
+
+    .hero-logo {
+        /* 画面右寄りに一つだけ見せる */
+        position: absolute;
+        top: 12%;
+        right: 4%;
+        left: auto;
+        bottom: auto;
+        width: 42%;
+        height: auto;
+        z-index: 0;
+        opacity: 0.12;
+        animation: none; /* アニメーションは不要 */
+    }
+
+    .hero-logo-img {
+        opacity: 0.12;
+        filter: blur(1px);
+        object-fit: contain;
+    }
+
+    /* 罫線の調整：2列時に右側のカラムにのみ右ボーダーを残すなど、必要なら個別に対応 */
+    .accordion-content .border-r,
+    .accordion-content [class*="border-r"] {
+        border-right: 1px solid rgba(0,0,0,0.06) !important;
+    }
+}
+
 /* ========================================
    フォトギャラリー（複雑なオーバーレイ）
    ======================================== */
