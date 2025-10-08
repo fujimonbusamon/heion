@@ -59,10 +59,21 @@
         <div class="hero-logo">
             <img src="images/heion-white.svg" alt="平穏ロゴ" class="hero-logo-img">
         </div>
+            <!-- 背景ロゴ（左上に大きく、少し見える） -->
+            <div class="hero-logo hero-logo-tl" aria-hidden="true">
+                <img src="images/heion-white.svg" alt="" class="hero-logo-img">
+            </div>
+            <!-- 背景ロゴ（右下に大きく、少し見える） -->
+            <div class="hero-logo hero-logo-br" aria-hidden="true">
+                <img src="images/heion-white.svg" alt="" class="hero-logo-img">
+            </div>
         <div class="hero-content">
-            <p class="catchphrase">
-                一心同体、義理人情。
-            </p>
+            <div class="catchphrase-with-logo">
+                <img src="images/heion-white.svg" alt="heion logo" class="catchphrase-logo">
+                <p class="catchphrase">
+                    一心同体、義理人情。
+                </p>
+            </div>
             <h1 class="text-white font-semibold mb-4 font-yuji tracking-wider">平穏</h1>
             <p class="subtitle">品川区西大井のバレーボールチーム<br>初心者も経験者も歓迎です</p>
             <a href="#contact" class="cta-button">メンバー募集中</a>
@@ -105,11 +116,11 @@
 
     <!-- メンバー紹介 -->
     <section class="py-20 px-5 relative z-10 bg-white overflow-hidden">
-        <div class="wa-circle wa-circle-3"></div>
         <div class="max-w-6xl mx-auto">
             <h2 class="section-title fade-in">仲間たち</h2>
             <p class="section-subtitle fade-in">共に高め合う、かけがえのない存在</p>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-16 fade-in">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mt-16 fade-in members-grid">
+                <!-- 代表 -->
                 <div class="text-center p-8 transition-all duration-300">
                     <img src="images/member/fujimon.jpg" alt="代表" class="member-image member-image-fujimon">
                     <h3 class="text-2xl font-semibold mb-2 font-yuji tracking-wider">ふじもん</h3>
@@ -118,34 +129,83 @@
                     <span
                         class="inline-block px-4 py-1 bg-gray-900 text-white text-xs mt-4 tracking-wider">全チーム統括</span>
                 </div>
+                <!-- たぬきキャプテン＋アコーディオン -->
                 <div class="text-center p-8 transition-all duration-300">
                     <img src="images/member/motosyuku.jpg" alt="キャプテン" class="member-image">
                     <h3 class="text-2xl font-semibold mb-2 font-yuji tracking-wider">本宿宏樹</h3>
                     <p class="text-base text-gray-600 mb-4 font-zen">たぬきキャプテン</p>
                     <p class="text-sm leading-relaxed text-gray-700 italic">「初心者の方も大歓迎！基礎から丁寧に教えます。楽しみながら上達しましょう！」</p>
                     <span class="inline-block px-4 py-1 bg-gray-900 text-white text-xs mt-4 tracking-wider">たぬき</span>
+                    <button class="accordion-btn mt-4 px-4 py-2 bg-gray-200 text-gray-800 rounded focus:outline-none" data-target="tanuki-members">メンバー一覧</button>
+                    <div id="tanuki-members" class="accordion-content mt-4 text-left" style="display:none;">
+                        <div class="flex justify-center border-t border-b border-gray-300 pt-4 pb-4">
+                            <div class="text-center">
+                                <img src="images/member/fukuisi.jpg" alt="福石慶市郎" class="member-image mx-auto">
+                                <div class="font-semibold mt-2">福石慶市郎</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- VViPキャプテン＋アコーディオン -->
                 <div class="text-center p-8 transition-all duration-300">
                     <img src="images/member/furui.jpg" alt="キャプテン" class="member-image">
                     <h3 class="text-2xl font-semibold mb-2 font-yuji tracking-wider">古井隆徳</h3>
                     <p class="text-base text-gray-600 mb-4 font-zen">VViPキャプテン</p>
                     <p class="text-sm leading-relaxed text-gray-700 italic">「レベルアップを目指しながら、楽しく練習！切磋琢磨できる仲間募集中！」</p>
                     <span class="inline-block px-4 py-1 bg-gray-900 text-white text-xs mt-4 tracking-wider">VViP</span>
+                    <button class="accordion-btn mt-4 px-4 py-2 bg-gray-200 text-gray-800 rounded focus:outline-none" data-target="vvip-members">メンバー一覧</button>
+                    <div id="vvip-members" class="accordion-content mt-4 text-left" style="display:none;">
+                        <div class="grid grid-cols-2 gap-4 border-t border-b border-gray-300 pt-4 pb-4">
+                            <div class="text-center border-r border-gray-200 pr-4">
+                                <img src="images/member/watanabe.jpg" alt="渡邊光" class="member-image mx-auto">
+                                <div class="font-semibold mt-2">渡邊光</div>
+                            </div>
+                            <div class="text-center pl-4">
+                                <img src="images/member/ookuma.jpg" alt="大熊里紗子" class="member-image mx-auto">
+                                <div class="font-semibold mt-2">大熊里紗子</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- 平穏男子キャプテン＋アコーディオン -->
                 <div class="text-center p-8 transition-all duration-300">
                     <img src="images/member/irie.jpg" alt="キャプテン" class="member-image">
                     <h3 class="text-2xl font-semibold mb-2 font-yuji tracking-wider">入江凌央</h3>
                     <p class="text-base text-gray-600 mb-4 font-zen">平穏男子キャプテン</p>
                     <p class="text-sm leading-relaxed text-gray-700 italic">「本格的な6人制バレー。熱い試合を一緒に楽しみましょう！」</p>
                     <span class="inline-block px-4 py-1 bg-gray-900 text-white text-xs mt-4 tracking-wider">平穏男子</span>
+                    <button class="accordion-btn mt-4 px-4 py-2 bg-gray-200 text-gray-800 rounded focus:outline-none" data-target="dansei-members">メンバー一覧</button>
+                    <div id="dansei-members" class="accordion-content mt-4 text-left" style="display:none;">
+                        <div class="grid grid-cols-2 gap-4 border-t border-b border-gray-300 pt-4 pb-4">
+                            <div class="text-center border-r border-gray-200 pr-4">
+                                <img src="images/member/kagami.jpg" alt="賀上佳亮" class="member-image mx-auto">
+                                <div class="font-semibold mt-2">賀上佳亮</div>
+                            </div>
+                            <div class="text-center pl-4">
+                                <img src="images/member/sawa.jpg" alt="澤尚希" class="member-image mx-auto">
+                                <div class="font-semibold mt-2">澤尚希</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- 平穏女子キャプテン＋アコーディオン -->
                 <div class="text-center p-8 transition-all duration-300">
                     <img src="images/member/yamasaki.jpg" alt="キャプテン" class="member-image">
                     <h3 class="text-2xl font-semibold mb-2 font-yuji tracking-wider">山崎紗椰</h3>
                     <p class="text-base text-gray-600 mb-4 font-zen">平穏女子キャプテン</p>
                     <p class="text-sm leading-relaxed text-gray-700 italic">「チームワークを大切に、みんなで成長！経験者の方、お待ちしています！」</p>
                     <span class="inline-block px-4 py-1 bg-gray-900 text-white text-xs mt-4 tracking-wider">平穏女子</span>
+                    <button class="accordion-btn mt-4 px-4 py-2 bg-gray-200 text-gray-800 rounded focus:outline-none" data-target="jyosei-members">メンバー一覧</button>
+                    <div id="jyosei-members" class="accordion-content mt-4 text-left" style="display:none;">
+                        <div class="flex justify-center border-t border-b border-gray-300 pt-4 pb-4">
+                            <div class="text-center">
+                                <img src="images/member/suzuki.jpg" alt="鈴木夏実" class="member-image mx-auto">
+                                <div class="font-semibold mt-2">鈴木夏実</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+                <!-- マネージャー -->
                 <div class="text-center p-8 transition-all duration-300">
                     <img src="images/member/takekosi.jpg" alt="マネージャー" class="member-image">
                     <h3 class="text-2xl font-semibold mb-2 font-yuji tracking-wider">竹腰 開</h3>

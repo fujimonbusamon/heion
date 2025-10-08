@@ -104,6 +104,39 @@
     filter: blur(1px);
 }
 
+/* 大きな背景ロゴ（左上／右下に少しだけ見える） */
+.hero-logo-tl {
+    /* 左上ロゴをもっと中心寄りに見せる（左と上のオフセットを小さく） */
+    top: -20%;
+    left: -10%;
+    right: auto;
+    bottom: auto;
+    width: 170%;
+    height: 170%;
+    z-index: 0;
+    opacity: 0.14;
+    transform: rotate(-6deg) translate(6%, 6%);
+}
+
+.hero-logo-br {
+    /* 右下ロゴはさらにフレームアウトさせる（より外側へ） */
+    bottom: -55%;
+    right: -60%;
+    left: auto;
+    top: auto;
+    width: 180%;
+    height: 180%;
+    z-index: 0;
+    opacity: 0.10;
+    transform: rotate(6deg) translate(10%, 10%);
+}
+
+.hero-logo-tl .hero-logo-img,
+.hero-logo-br .hero-logo-img {
+    opacity: 0.08; /* 背景として控えめに */
+    filter: blur(2px) saturate(0.9);
+}
+
 @keyframes logoFadeIn {
     from { 
         opacity: 0;
@@ -155,6 +188,51 @@
     font-weight: 400;
     line-height: 1.4;
 }
+    .hero .catchphrase {
+        color: #fff;
+        /* 文字を大きく（少し太めに見えるように） */
+        font-size: clamp(1.9rem, 5vw, 3.6rem);
+        margin-bottom: 3.6rem; /* マージンを増やす */
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.85);
+        font-family: 'Zen Kurenaido', serif;
+        letter-spacing: 0.33em;
+        font-weight: 500;
+        line-height: 1.35;
+    }
+
+/* ロゴをキャッチフレーズの上に配置 */
+.catchphrase-with-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    position: relative;
+    z-index: 3; /* hero-content より上に来る */
+}
+    .catchphrase-with-logo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 1.2rem; /* 余白を少し広げる */
+        position: relative;
+        z-index: 3; /* hero-content より上に来る */
+    }
+
+.catchphrase-logo {
+    width: clamp(72px, 8vw, 140px);
+    height: auto;
+    opacity: 0.95;
+    filter: drop-shadow(0 6px 14px rgba(0,0,0,0.45));
+}
+    .catchphrase-logo {
+        /* ほぼ2倍サイズに（元の clamp の最大を2倍に近づける） */
+        width: clamp(144px, 16vw, 280px);
+        height: auto;
+        opacity: 0.95;
+        filter: drop-shadow(0 8px 20px rgba(0,0,0,0.5));
+    }
 
 .cta-button {
     display: inline-block;
@@ -274,31 +352,135 @@
     display: block !important;
 }
 
-.member-image-fujimon {
-    width: 220px;
-    height: 220px;
-    margin-top: 30px !important;
-    margin-bottom: 0.5rem !important;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid #1a1a1a;
-    transition: all 0.3s ease;
-    filter: grayscale(100%);
-    display: block !important;
-}
-
-@media (max-width: 768px) {
-    .member-image-fujimon {
-        width: 170px;
-        height: 170px;
-        margin-top: 18px !important;
-    }
-}
-
 .member-image:hover {
     transform: scale(1.05);
     filter: grayscale(0%);
     border-color: #666;
+}
+
+/* アコーディオン内のメンバー一覧を縦並びにする */
+/* アコーディオン内のメンバー一覧（デフォルトはモバイル向け：縦並び） */
+@media (max-width: 991px) {
+    .accordion-content {
+        width: 100%;
+    }
+
+    /* グリッド／フレックスで横並びになっている内包要素を強制的に縦並びに */
+    .accordion-content .grid {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+        gap: 1rem !important;
+    }
+
+    .accordion-content .flex {
+        display: block !important;
+    }
+
+    /* 右罫線がついている場合、縦並びでは不要なので解除 */
+    .accordion-content .border-r,
+    .accordion-content [class*="border-r"] {
+        border-right: none !important;
+    }
+
+    /* メンバー要素の余白と画像サイズを調整して縦並びで見やすくする */
+    .accordion-content .text-center {
+        padding: 0.75rem 0 !important;
+    }
+
+    .accordion-content .member-image {
+        width: 120px !important;
+        height: 120px !important;
+        margin: 0 auto 0.75rem !important;
+    }
+}
+
+/* デスクトップ以上では、リーダー（代表・キャプテン）は2列表示、
+   メンバー一覧も2列の丸いアイテムで表示 */
+@media (min-width: 992px) {
+    /* メンバー一覧（leaders）を2列に調整：親の grid は既に md:grid-cols-2 を持つ */
+    .members-grid {
+        /* leaders は常に2列（追加メンバーが増えても2列のグリッドで折り返す） */
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 2rem;
+        align-items: start;
+    }
+
+    /* アコーディオン内のメンバーリストを2列に */
+    .accordion-content .grid {
+        display: grid !important;
+        /* メンバー一覧は2列で、要素数が増えても自動で折り返す */
+        grid-template-columns: repeat(2, minmax(160px, 1fr)) !important;
+        gap: 1.25rem !important;
+    }
+
+    /* 各メンバーカードを丸くし、中央揃え */
+    .accordion-content .text-center {
+        padding: 0.75rem !important;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .accordion-content .member-image {
+        width: 140px !important;
+        height: 140px !important;
+        border-radius: 50% !important;
+        margin: 0 0 0.75rem !important;
+    }
+
+    /* 保険：新しく追加されるメンバー要素が異なる構造でも適用されるように汎用ルール */
+    .accordion-content img,
+    .members-grid img {
+        width: 100%;
+        height: auto;
+        max-width: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        display: block;
+        margin: 0 auto 0.75rem;
+    }
+
+    .accordion-content .member-name,
+    .members-grid .member-name {
+        text-align: center;
+        font-weight: 600;
+        margin-top: 0.25rem;
+    }
+
+    /* ヘッダー背景ロゴ（PC）：モバイルは現状維持、PCでは右寄せで一つだけ表示 */
+    /* TL と BR デコレーションを非表示にして、main の .hero-logo を右側に配置 */
+    .hero-logo-tl,
+    .hero-logo-br {
+        display: none !important;
+    }
+
+    .hero-logo {
+        /* 画面右寄りに一つだけ見せる */
+        position: absolute;
+        top: 12%;
+        right: 4%;
+        left: auto;
+        bottom: auto;
+        width: 42%;
+        height: auto;
+        z-index: 0;
+        opacity: 0.12;
+        animation: none; /* アニメーションは不要 */
+    }
+
+    .hero-logo-img {
+        opacity: 0.12;
+        filter: blur(1px);
+        object-fit: contain;
+    }
+
+    /* 罫線の調整：2列時に右側のカラムにのみ右ボーダーを残すなど、必要なら個別に対応 */
+    .accordion-content .border-r,
+    .accordion-content [class*="border-r"] {
+        border-right: 1px solid rgba(0,0,0,0.06) !important;
+    }
 }
 
 /* ========================================
@@ -520,5 +702,28 @@
     .sponsor-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
+    }
+}
+
+/* デスクトップ向け（大画面）で背景ロゴが大きすぎる場合の調整 */
+@media (min-width: 1200px) {
+    .hero-logo-tl {
+        /* 小さくして中心寄りの見え方を控えめに */
+        top: -15%;
+        left: -5%;
+        width: 120%;
+        height: 120%;
+        opacity: 0.10;
+        transform: rotate(-6deg) translate(4%, 4%);
+    }
+
+    .hero-logo-br {
+        /* 右下は少しだけ外側に出すが、全体は控えめに */
+        bottom: -30%;
+        right: -35%;
+        width: 130%;
+        height: 130%;
+        opacity: 0.08;
+        transform: rotate(6deg) translate(6%, 6%);
     }
 }
