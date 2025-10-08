@@ -274,6 +274,27 @@
     display: block !important;
 }
 
+.member-image-fujimon {
+    width: 220px;
+    height: 220px;
+    margin-top: 30px !important;
+    margin-bottom: 0.5rem !important;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid #1a1a1a;
+    transition: all 0.3s ease;
+    filter: grayscale(100%);
+    display: block !important;
+}
+
+@media (max-width: 768px) {
+    .member-image-fujimon {
+        width: 170px;
+        height: 170px;
+        margin-top: 18px !important;
+    }
+}
+
 .member-image:hover {
     transform: scale(1.05);
     filter: grayscale(0%);
