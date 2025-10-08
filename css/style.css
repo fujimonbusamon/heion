@@ -432,23 +432,37 @@
         margin: 0 0 0.75rem !important;
     }
 
-    /* 保険：新しく追加されるメンバー要素が異なる構造でも適用されるように汎用ルール */
+    /* 保険：新しく追加されるメンバー要素が異なる構造でも適用されるように汎用ルール
+       デスクトップでは正方形にして丸く表示（楕円化を防ぐ） */
     .accordion-content img,
     .members-grid img {
-        width: 100%;
-        height: auto;
-        max-width: 220px;
+        width: 160px !important;
+        height: 160px !important;
+        max-width: none;
         object-fit: cover;
-        border-radius: 50%;
+        border-radius: 50% !important;
         display: block;
         margin: 0 auto 0.75rem;
+        overflow: hidden;
+    }
+
+    /* member-image を含むすべてのメンバー画像を同じサイズに揃える（マネージャーも含む） */
+    .member-image,
+    .members-grid .member-image,
+    .accordion-content .member-image {
+        width: 160px !important;
+        height: 160px !important;
+        border-radius: 50% !important;
+        object-fit: cover !important;
+        overflow: hidden !important;
+        margin: 0 auto 1rem !important;
     }
 
 /* 強制的に正方形にして丸く切るユーティリティ */
 .circle-img {
     display: block;
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 160px;
     object-fit: cover;
     border-radius: 50%;
     overflow: hidden;
@@ -707,6 +721,12 @@
         width: 150px;
         height: 150px;
         border-radius: 50% !important;
+    }
+
+    /* モバイルではユーティリティも小さく */
+    .circle-img {
+        width: 120px;
+        height: 120px;
     }
 
     .photo-grid {
